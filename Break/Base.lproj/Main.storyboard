@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9052" systemVersion="15A279b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="cqH-9B-ZOm">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9040"/>
+    </dependencies>
+    <scenes>
+        <!--Start View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="StartViewController" customModule="Break" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="AGt-2k-rZv">
+                                <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                                <animations/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Break" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eDR-Po-70s">
+                                <rect key="frame" x="0.0" y="137" width="667" height="100"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="J6f-KP-QHG"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1YM-hj-nql">
+                                <rect key="frame" x="283" y="256" width="100" height="60"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="C2w-I3-dQE"/>
+                                    <constraint firstAttribute="height" constant="60" id="Wc3-in-OWK"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="Play">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="play:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rNl-Gi-ZQs"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="AGt-2k-rZv" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="9Vq-uf-Oj7"/>
+                            <constraint firstItem="AGt-2k-rZv" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="DNg-hU-J4X"/>
+                            <constraint firstItem="eDR-Po-70s" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="K5f-XL-8R5"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="1YM-hj-nql" secondAttribute="bottom" constant="59" id="Rov-DD-mZb"/>
+                            <constraint firstAttribute="trailing" secondItem="AGt-2k-rZv" secondAttribute="trailing" id="WbJ-f2-yqY"/>
+                            <constraint firstItem="1YM-hj-nql" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="agE-aK-LZf"/>
+                            <constraint firstItem="eDR-Po-70s" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="axY-So-u2y"/>
+                            <constraint firstItem="eDR-Po-70s" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="kLU-Ta-Mbf"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="AGt-2k-rZv" secondAttribute="bottom" id="wgd-y0-RnW"/>
+                            <constraint firstAttribute="trailing" secondItem="eDR-Po-70s" secondAttribute="trailing" id="zbS-A7-c4j"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="axY-So-u2y"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" id="AlV-cp-E3O"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1587" y="-293"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="awI-xK-9U2">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="cqH-9B-ZOm" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Ebb-C1-ee8">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="QYR-EO-vco"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AEI-W0-Il7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="466" y="-293"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="background" width="568" height="320"/>
+    </resources>
+    <color key="tintColor" red="0.2470588235" green="0.59607843140000005" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+</document>
