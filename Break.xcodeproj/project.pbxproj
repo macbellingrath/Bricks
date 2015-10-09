@@ -24,6 +24,7 @@
 		E62D6C741BC6B4CB00CF2EC5 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62D6C731BC6B4CB00CF2EC5 /* ComplicationController.swift */; };
 		E62D6C761BC6B4CB00CF2EC5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E62D6C751BC6B4CB00CF2EC5 /* Assets.xcassets */; };
 		E62D6C7A1BC6B4CB00CF2EC5 /* BreakWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = E62D6C5E1BC6B4CB00CF2EC5 /* BreakWatch.app */; };
+		E67221AB1BC7F7960079B990 /* GameBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67221AA1BC7F7960079B990 /* GameBehavior.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +100,7 @@
 		E62D6C731BC6B4CB00CF2EC5 /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
 		E62D6C751BC6B4CB00CF2EC5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E62D6C771BC6B4CB00CF2EC5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E67221AA1BC7F7960079B990 /* GameBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameBehavior.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,6 +185,7 @@
 			children = (
 				E62D6C531BC6AEBD00CF2EC5 /* StartViewController.swift */,
 				E62D6C551BC6AED700CF2EC5 /* GameViewController.swift */,
+				E67221AA1BC7F7960079B990 /* GameBehavior.swift */,
 				E62D6C591BC6AF2800CF2EC5 /* GameTopBarView.swift */,
 				E62D6C571BC6AEE300CF2EC5 /* ScoreViewController.swift */,
 			);
@@ -375,6 +378,7 @@
 				E62D6C331BC6AD2D00CF2EC5 /* AppDelegate.swift in Sources */,
 				E62D6C561BC6AED700CF2EC5 /* GameViewController.swift in Sources */,
 				E62D6C5A1BC6AF2800CF2EC5 /* GameTopBarView.swift in Sources */,
+				E67221AB1BC7F7960079B990 /* GameBehavior.swift in Sources */,
 				E62D6C581BC6AEE300CF2EC5 /* ScoreViewController.swift in Sources */,
 				E62D6C541BC6AEBD00CF2EC5 /* StartViewController.swift in Sources */,
 			);

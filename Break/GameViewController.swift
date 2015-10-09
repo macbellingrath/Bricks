@@ -8,10 +8,7 @@
 
 import UIKit
 
-enum BoundaryType: String {
-    
-    case Floor, LeftWall, RightWall, Ceiling
-}
+
 
 class GameViewController: UIViewController, UIDynamicAnimatorDelegate, UICollisionBehaviorDelegate {
     
@@ -21,142 +18,90 @@ class GameViewController: UIViewController, UIDynamicAnimatorDelegate, UICollisi
         lazilyCreatedDynamicAnimator.delegate = self
         return lazilyCreatedDynamicAnimator
         
+        
     }()
     
+    //Add Behavior
+    let gameBehavior = GameBehavior()
+    
+    var attachmentBehavior: UIAttachmentBehavior?
+    
+    //Anchor
     let anchor: CGPoint = CGPoint(x: 0, y: 0)
-    
-    var attachment: UIAttachmentBehavior?
-    
-    
+   
+    //Topbar
     let topbar = GameTopBarView(frame: CGRect(x: 0, y: 0, width: 0, height: 50))
     
+    //Paddle
     let paddle = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 10))
-    let ballBehavior = UIDynamicItemBehavior()
-    let brickBehavior = UIDynamicItemBehavior()
-    let paddleBehavior = UIDynamicItemBehavior()
     
-    let gravity = UIGravityBehavior()
-    let collision = UICollisionBehavior()
+    //Ball
+    let ball = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+    
     
     
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        animator.addBehavior(gameBehavior)
         
-        //background
+        
+        //Background
         let bg = UIImageView(image: UIImage(named: "background"))
         bg.frame = view.frame
         view.addSubview(bg)
         
+        
+        //Topbar
         topbar.frame.size.width = view.frame.width
         view.addSubview(topbar)
     
+        gameBehavior.addBall(ball)
         
-        animator.delegate = self
+        //Collision Behavior Configuration
+        gameBehavior.collisionBehavior.collisionDelegate = self
         
-        
-        animator.addBehavior(gravity)
-        animator.addBehavior(collision)
-        animator.addBehavior(ballBehavior)
-        animator.addBehavior(brickBehavior)
-        animator.addBehavior(paddleBehavior)
-        
-        collision.collisionDelegate = self
-        
-        let ball = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
-        ball.layer.cornerRadius = ball.frame.width / 2
-        ball.backgroundColor = UIColor.yellowColor()
-        ball.center = view.center
-        view.addSubview(ball)
-        
-        
-        gravity.addItem(ball)
-    
-        ballBehavior.addItem(ball)
-
-        collision.addItem(ball)
-        
-        
-    
-        collision.translatesReferenceBoundsIntoBoundary = true
-        
-        collision.addBoundaryWithIdentifier(BoundaryType.Ceiling.rawValue, fromPoint: CGPoint(x: 0, y: 50),toPoint: CGPoint(x: view.frame.width, y: 50))
-       collision.addBoundaryWithIdentifier(BoundaryType.Floor.rawValue, fromPoint: CGPoint(x: 0, y: view.frame.height - 10),toPoint: CGPoint(x: view.frame.width, y: view.frame.height - 10))
+        gameBehavior.collisionBehavior.addBoundaryWithIdentifier(BoundaryType.Ceiling.rawValue, fromPoint: CGPoint(x: 0, y: 50),toPoint: CGPoint(x: view.frame.width, y: 50))
+        gameBehavior.collisionBehavior.addBoundaryWithIdentifier(BoundaryType.Floor.rawValue, fromPoint: CGPoint(x: 0, y: view.frame.height - 10),toPoint: CGPoint(x: view.frame.width, y: view.frame.height - 10))
         
 
-        //MARK: - Push
-        
+        //Push Behavior Configuration
         let push = UIPushBehavior(items: [ball], mode: .Instantaneous)
         push.pushDirection = CGVector(dx: 0.15, dy: 0.5)
         animator.addBehavior(push)
         
         
-        //MARK: - Configure ball behavior
-        ballBehavior.friction = 0
-        ballBehavior.resistance = 0
-        ballBehavior.elasticity = 1
         
         //MARK: - Paddle
-        view.addSubview(paddle)
-        paddle.backgroundColor = UIColor.blackColor()
-        paddle.center = CGPoint(x: view.center.x, y: view.frame.height - 40 )
-        paddleBehavior.addItem(paddle)
-        collision.addItem(paddle)
-//        paddleBehavior.anchored = true
-        paddleBehavior.allowsRotation = false
+        gameBehavior.addPaddle(paddle)
         
-        attachment = UIAttachmentBehavior(item: paddle, attachedToAnchor: paddle.center)
-        animator.addBehavior(attachment!)
        
+        //MARK: - Attachment Behavior
+         attachmentBehavior = UIAttachmentBehavior(item: paddle, attachedToAnchor: paddle.center)
+        
+        animator.addBehavior(attachmentBehavior!)
         
         
-        
-        //MARK: - Bricks
-        
-        let cols = 8
-        let rows = 3
-        
-        let brickH = 30
-        let brickSpacing = 5
-        
-        let totalSpacing = (cols + 1) * brickSpacing
-        let brickW = (Int(view.frame.width) - totalSpacing) / cols
-        
-        
-        
-        for c in 0..<cols {
-            
-            for r in 0..<rows {
-                
-                let x = c * (brickW + brickSpacing) + brickSpacing
-                let y = r * (brickH + brickSpacing) + brickSpacing + 60
-                
-                let brick = UIView(frame: CGRect(x: x, y: y, width: brickW, height: brickH))
-                brick.backgroundColor = UIColor.whiteColor()
-                brick.layer.cornerRadius = 5
-                
-                view.addSubview(brick)
-
-                collision.addItem(brick)
-                
-                brickBehavior.addItem(brick)
-            }
-        }
-        
-        
+        //MARK: - Brick Drawing
+       gameBehavior.addBricks(8, rows: 3, brickHeight: 30, brickSpacing: 5)
+       
     }
+    
+    
+  
+    
     
     
     func collisionBehavior(behavior: UICollisionBehavior, beganContactForItem item1: UIDynamicItem, withItem item2: UIDynamicItem, atPoint p: CGPoint) {
        
       
-            for brick in brickBehavior.items as! [UIView] {
+            for brick in gameBehavior.brickBehavior.items as! [UIView] {
               
                 if brick === item1  || brick === item2 {
                     
-                    brickBehavior.removeItem(brick)
-                    collision.removeItem(brick)
+                    gameBehavior.brickBehavior.removeItem(brick)
+                    gameBehavior.collisionBehavior.removeItem(brick)
                     
                     
                     brick.removeFromSuperview()
@@ -183,13 +128,18 @@ class GameViewController: UIViewController, UIDynamicAnimatorDelegate, UICollisi
     }
     
     
+    
+   
+
+    
+    
     //MARK: - Touches
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
       
         if let touch = touches.first {
             let point = touch.locationInView(view)
-            attachment?.anchorPoint.x = point.x
+            attachmentBehavior?.anchorPoint.x = point.x
             
             
             
@@ -202,7 +152,7 @@ class GameViewController: UIViewController, UIDynamicAnimatorDelegate, UICollisi
         
         if let touch = touches.first {
             let point = touch.locationInView(view)
-            attachment?.anchorPoint.x = point.x
+            attachmentBehavior?.anchorPoint.x = point.x
             
         
         }
