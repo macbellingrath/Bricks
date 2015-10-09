@@ -15,7 +15,6 @@ class GameTopBarView: UIView {
      
         didSet {
             //change circles
-            
             for circle in lifeView.subviews {
               
                 circle.removeFromSuperview()

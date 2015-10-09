@@ -7,23 +7,24 @@
 //
 
 import UIKit
+import AVFoundation
 
 
 
-class GameViewController: UIViewController, UIDynamicAnimatorDelegate, UICollisionBehaviorDelegate {
+
+class GameViewController: UIViewController, UIDynamicAnimatorDelegate, UICollisionBehaviorDelegate, AVAudioPlayerDelegate {
     
     //MARK: - Animator 
     lazy var animator: UIDynamicAnimator = {
         let lazilyCreatedDynamicAnimator = UIDynamicAnimator(referenceView: self.view)
         lazilyCreatedDynamicAnimator.delegate = self
         return lazilyCreatedDynamicAnimator
-        
-        
+
     }()
     
-    //Add Behavior
-    let gameBehavior = GameBehavior()
     
+    //Behaviors
+    let gameBehavior = GameBehavior()
     var attachmentBehavior: UIAttachmentBehavior?
     
     //Anchor
@@ -38,19 +39,16 @@ class GameViewController: UIViewController, UIDynamicAnimatorDelegate, UICollisi
     //Ball
     let ball = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
     
-    
-    
-    
+    //Audio Player
+    var players = [AVAudioPlayer]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         animator.addBehavior(gameBehavior)
         
-        
+    
         //Background
-        let bg = UIImageView(image: UIImage(named: "background"))
-        bg.frame = view.frame
-        view.addSubview(bg)
+        setBackGround()
         
         
         //Topbar
@@ -75,7 +73,6 @@ class GameViewController: UIViewController, UIDynamicAnimatorDelegate, UICollisi
         
         //MARK: - Paddle
         gameBehavior.addPaddle(paddle)
-        
        
         //MARK: - Attachment Behavior
          attachmentBehavior = UIAttachmentBehavior(item: paddle, attachedToAnchor: paddle.center)
@@ -89,18 +86,22 @@ class GameViewController: UIViewController, UIDynamicAnimatorDelegate, UICollisi
     }
     
     
+    
+    
   
     
     
+    //MARK: - Collision Behavior Delegate Methods
     
     func collisionBehavior(behavior: UICollisionBehavior, beganContactForItem item1: UIDynamicItem, withItem item2: UIDynamicItem, atPoint p: CGPoint) {
        
-      
+      print(behavior)
             for brick in gameBehavior.brickBehavior.items as! [UIView] {
               
                 if brick === item1  || brick === item2 {
                     
                     gameBehavior.brickBehavior.removeItem(brick)
+                    
                     gameBehavior.collisionBehavior.removeItem(brick)
                     
                     
@@ -108,6 +109,15 @@ class GameViewController: UIViewController, UIDynamicAnimatorDelegate, UICollisi
                     
                     topbar.score += 100
             }
+                
+                if let player = AVAudioPlayer.playPlayer(.Bang) {
+                    player.delegate = self
+//                    player.play()
+                    players.append(player)
+                
+                    
+                
+                }
         }
     }
     
@@ -127,11 +137,12 @@ class GameViewController: UIViewController, UIDynamicAnimatorDelegate, UICollisi
         }
     }
     
-    
-    
-   
-
-    
+    func setBackGround() {
+       
+        let bg = UIImageView(image: UIImage(named: "background"))
+        bg.frame = view.frame
+        view.addSubview(bg)
+    }
     
     //MARK: - Touches
     
@@ -157,4 +168,74 @@ class GameViewController: UIViewController, UIDynamicAnimatorDelegate, UICollisi
         
         }
     }
+    
+    
+    
+    //MARK: - Audio Delegate methods
+    
+    func audioPlayerDidFinishPlaying(player: AVAudioPlayer, successfully flag: Bool) {
+        players.removeLast()
+        print("player removed")
+        
+    }
+    
+    
+    
+
 }
+extension AVAudioPlayer {
+    
+    class func playPlayer(identifier: AssetIdentifier) -> AVAudioPlayer? {
+        if let asset = NSDataAsset(name: identifier.rawValue) {
+            
+            let data = asset.data
+            
+            do {
+                
+                let player = try AVAudioPlayer(data: data)
+                
+                player.play()
+                
+                return player
+                
+            } catch  {
+                
+                print(error)
+            }
+            
+            
+        }
+        return nil
+
+    }
+    
+    enum AssetIdentifier: String {
+        case Pop, Ping, Bang
+        
+    }
+    
+    convenience init!(assetIdentifier: AssetIdentifier) {
+            do {
+                
+                try self.init(data: ((NSDataAsset(name: assetIdentifier.rawValue))?.data)!)
+                
+            } catch {
+                print(error)
+            }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

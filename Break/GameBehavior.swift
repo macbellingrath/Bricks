@@ -47,11 +47,7 @@ class GameBehavior: UIDynamicBehavior {
     
     let brickBehavior = UIDynamicItemBehavior()
     
-//    //Attachment Behavior 
-//    lazy var attachmentBehavior: UIAttachmentBehavior = {
-//        let lazyilyLoadedAttachmentBehavior = UIAttachmentBehavior()
-//    }()
-    
+
     
     override init(){
         super.init()
@@ -79,8 +75,6 @@ class GameBehavior: UIDynamicBehavior {
     func removePaddle(paddle: UIView) {
         
     }
-    
-    
     
     func addBricks(columns: Int, rows: Int, brickHeight: Int, brickSpacing: Int) {
        
@@ -124,7 +118,6 @@ class GameBehavior: UIDynamicBehavior {
         
     }
     
-    
     func addBall(ball: UIView) {
     
         ball.layer.cornerRadius = ball.frame.width / 2
@@ -141,8 +134,6 @@ class GameBehavior: UIDynamicBehavior {
         ballBehavior.addItem(ball)
         print("added ball")
     }
-    
-    
     
     func removeBall(ball: UIView){
         gravityBehavior.removeItem(ball)
