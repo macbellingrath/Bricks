@@ -8,9 +8,10 @@
 
 import UIKit
 import AVFoundation
+import WatchConnectivity
 
 
-class GameViewController: UIViewController, UIDynamicAnimatorDelegate, UICollisionBehaviorDelegate, AVAudioPlayerDelegate {
+class GameViewController: UIViewController, UIDynamicAnimatorDelegate, UICollisionBehaviorDelegate, AVAudioPlayerDelegate, WCSessionDelegate {
     
     //MARK: - Animator 
     lazy var animator: UIDynamicAnimator = {
@@ -20,6 +21,9 @@ class GameViewController: UIViewController, UIDynamicAnimatorDelegate, UICollisi
 
     }()
     
+    var data = [String]()
+    
+    var session: WCSession!
     
     //Behaviors
     let gameBehavior = GameBehavior()
@@ -41,10 +45,28 @@ class GameViewController: UIViewController, UIDynamicAnimatorDelegate, UICollisi
     //Audio Player
     var players = [AVAudioPlayer]()
     
+    
+    func session(session: WCSession, didReceiveMessage message: [String : AnyObject], replyHandler: ([String : AnyObject]) -> Void) {
+        if let value = message["sliderValue"] as? String {
+            print(value)
+            dispatch_async(dispatch_get_main_queue()) {
+                self.data.append(value)
+            }
+        }
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
      
         animator.addBehavior(gameBehavior)
+        
+        if (WCSession.isSupported()) {
+            session = WCSession.defaultSession()
+            session.delegate = self;
+            session.activateSession()
+        }
+        
         
     
         //Background
@@ -66,7 +88,7 @@ class GameViewController: UIViewController, UIDynamicAnimatorDelegate, UICollisi
 
         //Push Behavior Configuration
         let push = UIPushBehavior(items: [ball], mode: .Instantaneous)
-        push.pushDirection = CGVector(dx: 0.15, dy: 0.5)
+        push.pushDirection = CGVector(dx: 0.1, dy: 0.1)
         animator.addBehavior(push)
         
         

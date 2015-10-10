@@ -8,7 +8,12 @@
 
 import UIKit
 
+
+@IBDesignable
 class StatsViewController: UIViewController {
+    
+ 
+    
 
   
 

@@ -8,7 +8,16 @@
         <!--Interface Controller-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="BreakWatch" customModuleProvider="target"/>
+                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="BreakWatch" customModuleProvider="target">
+                    <items>
+                        <slider width="1" alignment="center" verticalAlignment="center" continuous="YES" value="1" maximum="10" steps="10" id="mPn-JF-RIy">
+                            <color key="color" red="0.40000000600000002" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="sliderValue:" destination="AgC-eL-Hgc" id="syo-xD-H9E"/>
+                            </connections>
+                        </slider>
+                    </items>
+                </controller>
             </objects>
         </scene>
     </scenes>
