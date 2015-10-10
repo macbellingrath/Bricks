@@ -108,15 +108,15 @@ class GameViewController: UIViewController, UIDynamicAnimatorDelegate, UICollisi
 
                 
                 topbar.score += 100
+                GameData.currentScore = topbar.score
                 playSound(.Confirm)
-            
-                
-            }
+    
+                }
 
             }
         
-           }
-    
+    }
+
     
     func collisionBehavior(behavior: UICollisionBehavior, beganContactForItem item: UIDynamicItem, withBoundaryIdentifier identifier: NSCopying?, atPoint p: CGPoint) {
         

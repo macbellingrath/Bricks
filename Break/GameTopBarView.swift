@@ -42,7 +42,7 @@ class GameTopBarView: UIView {
         
         didSet {
             //update label
-            scoreLabel.text = String(score)
+            scoreLabel.text = score.toString()
             
         }
         
@@ -68,7 +68,7 @@ class GameTopBarView: UIView {
         lifeView.center.x = center.x
         lives = 3
         
-//        lifeView.backgroundColor = UIColor.whiteColor()
+
         
         scoreLabel.textColor = UIColor.whiteColor()
         scoreLabel.textAlignment = .Right
@@ -81,14 +81,5 @@ class GameTopBarView: UIView {
         
     }
     
-//    override func drawRect(rect: CGRect) {
-//        //drawing code
-//        //context
-//        let context = UIGraphicsGetCurrentContext()
-//        
-//        
-//      
-//    
-//    }
 
 }

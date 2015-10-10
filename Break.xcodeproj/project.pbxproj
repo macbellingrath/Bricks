@@ -13,7 +13,6 @@
 		E62D6C481BC6AD2D00CF2EC5 /* BreakTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62D6C471BC6AD2D00CF2EC5 /* BreakTests.swift */; };
 		E62D6C541BC6AEBD00CF2EC5 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62D6C531BC6AEBD00CF2EC5 /* StartViewController.swift */; };
 		E62D6C561BC6AED700CF2EC5 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62D6C551BC6AED700CF2EC5 /* GameViewController.swift */; };
-		E62D6C581BC6AEE300CF2EC5 /* ScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62D6C571BC6AEE300CF2EC5 /* ScoreViewController.swift */; };
 		E62D6C5A1BC6AF2800CF2EC5 /* GameTopBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62D6C591BC6AF2800CF2EC5 /* GameTopBarView.swift */; };
 		E62D6C621BC6B4CB00CF2EC5 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E62D6C601BC6B4CB00CF2EC5 /* Interface.storyboard */; };
 		E62D6C641BC6B4CB00CF2EC5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E62D6C631BC6B4CB00CF2EC5 /* Assets.xcassets */; };
@@ -24,6 +23,8 @@
 		E62D6C761BC6B4CB00CF2EC5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E62D6C751BC6B4CB00CF2EC5 /* Assets.xcassets */; };
 		E62D6C7A1BC6B4CB00CF2EC5 /* BreakWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = E62D6C5E1BC6B4CB00CF2EC5 /* BreakWatch.app */; };
 		E653A91D1BC821A4005A6708 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E62D6C631BC6B4CB00CF2EC5 /* Assets.xcassets */; };
+		E65722421BC98E94007C53DF /* GameData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65722411BC98E94007C53DF /* GameData.swift */; };
+		E65722441BC990F3007C53DF /* StatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65722431BC990F3007C53DF /* StatsViewController.swift */; };
 		E67221AB1BC7F7960079B990 /* GameBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67221AA1BC7F7960079B990 /* GameBehavior.swift */; };
 		E6EB5A331BC85597002CAC17 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E62D6C391BC6AD2D00CF2EC5 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
@@ -89,7 +90,6 @@
 		E62D6C491BC6AD2D00CF2EC5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E62D6C531BC6AEBD00CF2EC5 /* StartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		E62D6C551BC6AED700CF2EC5 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
-		E62D6C571BC6AEE300CF2EC5 /* ScoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreViewController.swift; sourceTree = "<group>"; };
 		E62D6C591BC6AF2800CF2EC5 /* GameTopBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameTopBarView.swift; sourceTree = "<group>"; };
 		E62D6C5E1BC6B4CB00CF2EC5 /* BreakWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BreakWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E62D6C611BC6B4CB00CF2EC5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
@@ -101,6 +101,8 @@
 		E62D6C731BC6B4CB00CF2EC5 /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
 		E62D6C751BC6B4CB00CF2EC5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E62D6C771BC6B4CB00CF2EC5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E65722411BC98E94007C53DF /* GameData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameData.swift; sourceTree = "<group>"; };
+		E65722431BC990F3007C53DF /* StatsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsViewController.swift; sourceTree = "<group>"; };
 		E67221AA1BC7F7960079B990 /* GameBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameBehavior.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -186,9 +188,10 @@
 			children = (
 				E62D6C531BC6AEBD00CF2EC5 /* StartViewController.swift */,
 				E62D6C551BC6AED700CF2EC5 /* GameViewController.swift */,
+				E65722431BC990F3007C53DF /* StatsViewController.swift */,
 				E67221AA1BC7F7960079B990 /* GameBehavior.swift */,
 				E62D6C591BC6AF2800CF2EC5 /* GameTopBarView.swift */,
-				E62D6C571BC6AEE300CF2EC5 /* ScoreViewController.swift */,
+				E65722411BC98E94007C53DF /* GameData.swift */,
 			);
 			name = GameFiles;
 			sourceTree = "<group>";
@@ -381,7 +384,8 @@
 				E62D6C561BC6AED700CF2EC5 /* GameViewController.swift in Sources */,
 				E62D6C5A1BC6AF2800CF2EC5 /* GameTopBarView.swift in Sources */,
 				E67221AB1BC7F7960079B990 /* GameBehavior.swift in Sources */,
-				E62D6C581BC6AEE300CF2EC5 /* ScoreViewController.swift in Sources */,
+				E65722441BC990F3007C53DF /* StatsViewController.swift in Sources */,
+				E65722421BC98E94007C53DF /* GameData.swift in Sources */,
 				E62D6C541BC6AEBD00CF2EC5 /* StartViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

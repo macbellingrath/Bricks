@@ -45,15 +45,37 @@
                                     <action selector="play:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rNl-Gi-ZQs"/>
                                 </connections>
                             </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="drP-sh-bjO">
+                                <rect key="frame" x="279.5" y="142" width="108" height="20.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Top Score:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QIi-pu-6ll">
+                                        <rect key="frame" x="0.0" y="0.0" width="82.5" height="20.5"/>
+                                        <animations/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dUj-8M-TNC">
+                                        <rect key="frame" x="97" y="0.0" width="10.5" height="20.5"/>
+                                        <animations/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <animations/>
+                            </stackView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="drP-sh-bjO" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="0ui-fu-oea"/>
                             <constraint firstItem="AGt-2k-rZv" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="9Vq-uf-Oj7"/>
                             <constraint firstItem="AGt-2k-rZv" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="DNg-hU-J4X"/>
                             <constraint firstItem="eDR-Po-70s" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="K5f-XL-8R5"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="1YM-hj-nql" secondAttribute="bottom" constant="59" id="Rov-DD-mZb"/>
                             <constraint firstAttribute="trailing" secondItem="AGt-2k-rZv" secondAttribute="trailing" id="WbJ-f2-yqY"/>
+                            <constraint firstItem="drP-sh-bjO" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="122" id="XMz-hE-GDP"/>
                             <constraint firstItem="1YM-hj-nql" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="agE-aK-LZf"/>
                             <constraint firstItem="eDR-Po-70s" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="axY-So-u2y"/>
                             <constraint firstItem="eDR-Po-70s" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="kLU-Ta-Mbf"/>
@@ -69,6 +91,9 @@
                     <navigationItem key="navigationItem" id="AlV-cp-E3O"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="topScoreLabel" destination="dUj-8M-TNC" id="ct9-oe-OW1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
