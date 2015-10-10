@@ -15,6 +15,7 @@ class GameBehavior: UIDynamicBehavior {
     
     //Collision Behavior
     lazy var collisionBehavior: UICollisionBehavior = {
+        print("collisionbehavior initialized")
         let lazilyCreatedCollider = UICollisionBehavior()
         lazilyCreatedCollider.translatesReferenceBoundsIntoBoundary = true
         return lazilyCreatedCollider
@@ -33,6 +34,7 @@ class GameBehavior: UIDynamicBehavior {
     // Gravity
     lazy var gravityBehavior:UIGravityBehavior = {
     let lazilyCreatedGravityBehavior = UIGravityBehavior()
+    
         return lazilyCreatedGravityBehavior
     }()
     
@@ -41,11 +43,15 @@ class GameBehavior: UIDynamicBehavior {
     lazy var paddleBehavior: UIDynamicItemBehavior = {
         let lazilycreatedPaddleBehavior = UIDynamicItemBehavior()
         lazilycreatedPaddleBehavior.allowsRotation = false
-        lazilycreatedPaddleBehavior.anchored = true
         return lazilycreatedPaddleBehavior
     }()
     
-    let brickBehavior = UIDynamicItemBehavior()
+    lazy var brickBehavior: UIDynamicItemBehavior = {
+        let lazyCreatedBrickBehavior = UIDynamicItemBehavior()
+        lazyCreatedBrickBehavior.anchored = true
+        
+        return lazyCreatedBrickBehavior
+    }()
     
 
     
@@ -54,19 +60,21 @@ class GameBehavior: UIDynamicBehavior {
         addChildBehavior(gravityBehavior)
         addChildBehavior(collisionBehavior)
         addChildBehavior(ballBehavior)
+        addChildBehavior(brickBehavior)
         addChildBehavior(paddleBehavior)
+        
     }
     
     func addPaddle(paddle: UIView) {
-        
+        paddle.backgroundColor = UIColor.blackColor()
+        dynamicAnimator?.referenceView?.addSubview(paddle)
         if let refView = dynamicAnimator?.referenceView {
-            paddle.backgroundColor = UIColor.blackColor()
             paddle.center = CGPoint(x: refView.center.x, y: refView.frame.height - 40)
-    
-            refView.addSubview(paddle)
-            paddleBehavior.addItem(paddle)
-            collisionBehavior.addItem(paddle)
+            
         }
+        paddleBehavior.addItem(paddle)
+        collisionBehavior.addItem(paddle)
+
      
         
         
@@ -99,11 +107,8 @@ class GameBehavior: UIDynamicBehavior {
                     let brick = UIView(frame: CGRect(x: x, y: y, width: brickW, height: brickH))
                     brick.backgroundColor = UIColor.whiteColor()
                     brick.layer.cornerRadius = 5
-                    
                     refView.addSubview(brick)
-                    
                     collisionBehavior.addItem(brick)
-                    
                     brickBehavior.addItem(brick)
                 }
             }
@@ -129,7 +134,7 @@ class GameBehavior: UIDynamicBehavior {
         if let refViewCenter = dynamicAnimator?.referenceView?.center {
             ball.center = refViewCenter
         }
-        gravityBehavior.addItem(ball)
+//        gravityBehavior.addItem(ball)
         collisionBehavior.addItem(ball)
         ballBehavior.addItem(ball)
         print("added ball")
@@ -140,7 +145,9 @@ class GameBehavior: UIDynamicBehavior {
         collisionBehavior.removeItem(ball)
         ballBehavior.removeItem(ball)
         ball.removeFromSuperview()
-        
+    }
+    func removeBrick(brick: UIDynamicItem) {
+       
     }
 
     

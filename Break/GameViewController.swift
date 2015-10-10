@@ -10,8 +10,6 @@ import UIKit
 import AVFoundation
 
 
-
-
 class GameViewController: UIViewController, UIDynamicAnimatorDelegate, UICollisionBehaviorDelegate, AVAudioPlayerDelegate {
     
     //MARK: - Animator 
@@ -25,6 +23,7 @@ class GameViewController: UIViewController, UIDynamicAnimatorDelegate, UICollisi
     
     //Behaviors
     let gameBehavior = GameBehavior()
+   
     var attachmentBehavior: UIAttachmentBehavior?
     
     //Anchor
@@ -44,6 +43,7 @@ class GameViewController: UIViewController, UIDynamicAnimatorDelegate, UICollisi
     
     override func viewDidLoad() {
         super.viewDidLoad()
+     
         animator.addBehavior(gameBehavior)
         
     
@@ -52,7 +52,7 @@ class GameViewController: UIViewController, UIDynamicAnimatorDelegate, UICollisi
         
         
         //Topbar
-        topbar.frame.size.width = view.frame.width
+        topbar.frame.size.width = self.view.frame.width
         view.addSubview(topbar)
     
         gameBehavior.addBall(ball)
@@ -75,7 +75,7 @@ class GameViewController: UIViewController, UIDynamicAnimatorDelegate, UICollisi
         gameBehavior.addPaddle(paddle)
        
         //MARK: - Attachment Behavior
-         attachmentBehavior = UIAttachmentBehavior(item: paddle, attachedToAnchor: paddle.center)
+        attachmentBehavior = UIAttachmentBehavior(item: paddle, attachedToAnchor: paddle.center)
         
         animator.addBehavior(attachmentBehavior!)
         
@@ -95,31 +95,27 @@ class GameViewController: UIViewController, UIDynamicAnimatorDelegate, UICollisi
     
     func collisionBehavior(behavior: UICollisionBehavior, beganContactForItem item1: UIDynamicItem, withItem item2: UIDynamicItem, atPoint p: CGPoint) {
        
-      print(behavior)
-            for brick in gameBehavior.brickBehavior.items as! [UIView] {
-              
-                if brick === item1  || brick === item2 {
-                    
-                    gameBehavior.brickBehavior.removeItem(brick)
-                    
-                    gameBehavior.collisionBehavior.removeItem(brick)
-                    
-                    
-                    brick.removeFromSuperview()
-                    
-                    topbar.score += 100
+        
+        for brick in gameBehavior.brickBehavior.items as! [UIView] {
+           
+          
+            if brick === item1  || brick == item2 as! UIView {
+                
+                gameBehavior.brickBehavior.removeItem(brick)
+                gameBehavior.collisionBehavior.removeItem(brick)
+             
+                brick.removeFromSuperview()
+
+                
+                topbar.score += 100
+                playSound(.Confirm)
+            
+                
             }
-                
-                if let player = AVAudioPlayer.playPlayer(.Bang) {
-                    player.delegate = self
-//                    player.play()
-                    players.append(player)
-                
-                    
-                
-                }
-        }
-    }
+
+            }
+        
+           }
     
     
     func collisionBehavior(behavior: UICollisionBehavior, beganContactForItem item: UIDynamicItem, withBoundaryIdentifier identifier: NSCopying?, atPoint p: CGPoint) {
@@ -130,6 +126,18 @@ class GameViewController: UIViewController, UIDynamicAnimatorDelegate, UICollisi
             
         case .Ceiling: print("I can fly high")
         case .Floor: print("I can fly low")
+        
+        if topbar.lives > 0 {
+            //reduce lives and reset ball
+            topbar.lives--
+            
+        } else {
+            //game over
+        
+        }
+            
+            
+            
         case .LeftWall: print("Lefty")
         case .RightWall: print("Correct")
             
@@ -171,60 +179,61 @@ class GameViewController: UIViewController, UIDynamicAnimatorDelegate, UICollisi
     
     
     
-    //MARK: - Audio Delegate methods
+    //MARK: - AudioPlayer
     
     func audioPlayerDidFinishPlaying(player: AVAudioPlayer, successfully flag: Bool) {
-        players.removeLast()
+     
+        if let index = players.indexOf(player) {
+        players.removeAtIndex(index)
         print("player removed")
+        }
         
     }
     
-    
-    
-
-}
-extension AVAudioPlayer {
-    
-    class func playPlayer(identifier: AssetIdentifier) -> AVAudioPlayer? {
-        if let asset = NSDataAsset(name: identifier.rawValue) {
+    func playSound(name: AVAudioPlayer.AssetIdentifier) {
+        
+        if let player = try? AVAudioPlayer(assetIdentifier: name) {
             
-            let data = asset.data
-            
-            do {
-                
-                let player = try AVAudioPlayer(data: data)
-                
-                player.play()
-                
-                return player
-                
-            } catch  {
-                
-                print(error)
-            }
-            
+            player.delegate = self
+            player.play()
+            players.append(player)
+            print(players.count)
             
         }
-        return nil
-
-    }
-    
-    enum AssetIdentifier: String {
-        case Pop, Ping, Bang
         
     }
     
-    convenience init!(assetIdentifier: AssetIdentifier) {
-            do {
-                
-                try self.init(data: ((NSDataAsset(name: assetIdentifier.rawValue))?.data)!)
-                
-            } catch {
-                print(error)
-            }
-    }
+    
+    
+
 }
 
+
+
+    
+   
+extension AVAudioPlayer {
+    
+    enum AssetIdentifier: String {
+        case Beep, Ping, Bang, Confirm
+        }
+        
+  
+        
+    
+        enum AssetError: ErrorType { case AssetNotFound,AssetBadData }
+        
+        convenience init(assetIdentifier: AssetIdentifier) throws {
+            
+            guard let file = NSDataAsset(name: assetIdentifier.rawValue) else { throw AssetError.AssetNotFound }
+            try self.init(data: file.data)
+            
+        }
+    
+    }
+    
+
+        
 
 
 
