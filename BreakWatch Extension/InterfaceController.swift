@@ -18,8 +18,11 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     @IBAction func sliderValue(value: Float) {
         
        
-    let applicationData = ["sliderValue":String(value)]
-        session.sendMessage(applicationData, replyHandler: { (reply: [String : AnyObject]) -> Void in
+    
+    let message = ["message": value]
+    session.sendMessage(message, replyHandler: { (reply) -> Void in
+           
+            print(reply)
             
             }) { (error) -> Void in
                 print(error)

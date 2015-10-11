@@ -14,9 +14,17 @@ class GameData: NSObject {
 
     class func mainData() -> GameData { return _mainData }
     
+    override init() {
+        super.init()
+        self.topScore = 0
+        self.currentScore = 0
+        self.topScore = 0
+        
+        
+    }
+
     
-    
-   static var currentScore = 0 {
+    var currentScore = 0 {
         
         didSet {
             
@@ -26,10 +34,10 @@ class GameData: NSObject {
         
     }
     
-    static var currentLevel = 0
+     var currentLevel = 0
 
     // levels = array of tuples where each tuple is made of 2 Int type values
-    var levels: [(Int,Int)] = [
+   var levels: [(Int,Int)] = [
     
         (5,2), // (row,col)
         (8,2),
@@ -40,27 +48,28 @@ class GameData: NSObject {
         
     ]
     
-    static var topScore: Int? {
+      var topScore: Int  {
         get {
-        return try? getTopScore()
+        return getTopScore()
         }
         set {
-            if let score = newValue {
-                setTopScore(score)
-            }
+            
+                setScore(newValue)
+            
         }
     }
     
     
-    class func getTopScore() throws -> Int {
-        guard let topScore = NSUserDefaults.standardUserDefaults().objectForKey("TopScore") as? Int else {
-            throw ScoreErrors.NoTopScore
+       func getTopScore() -> Int {
+      guard let topScore = NSUserDefaults.standardUserDefaults().objectForKey("TopScore") as? Int else {
+        
+            return 0
         }
         return topScore
         
     }
     
-    class func setTopScore(score: Int) {
+    func setScore(score: Int) {
         NSUserDefaults.standardUserDefaults().setObject(score, forKey: "TopScore")
         
     }

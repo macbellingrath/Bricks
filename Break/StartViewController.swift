@@ -37,12 +37,13 @@ class StartViewController: UIViewController {
        
         navigationController?.viewControllers = [gameVC]
     }
+   
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-       
-        if let topScore = GameData.topScore {
-            topScoreLabel.text = topScore.toString()
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        if let label = topScoreLabel {
+            let topScore = GameData.mainData().topScore
+            label.text = topScore.toString()
         }
     }
 }

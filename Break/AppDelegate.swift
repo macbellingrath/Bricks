@@ -7,15 +7,23 @@
 //
 
 import UIKit
+import WatchConnectivity
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
 
     var window: UIWindow?
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        if (WCSession.isSupported()) {
+            let session = WCSession.defaultSession()
+            session.delegate = self // conforms to WCSessionDelegate
+            session.activateSession()
+        }
+
         return true
     }
 
@@ -41,6 +49,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+//MARK: --  WCSessionDelegate
+    
+    func sessionWatchStateDidChange(session: WCSession) {
+        print(__FUNCTION__)
+        print(session)
+        print("reachable:\(session.reachable)")
+    }
+    
+    func session(session: WCSession, didReceiveMessage message: [String : AnyObject], replyHandler: ([String : AnyObject]) -> Void) {
+        print(__FUNCTION__)
+        guard message["request"] as? String == "fireLocalNotification" else {return}
+        
+        let localNotification = UILocalNotification()
+        localNotification.alertBody = "Message Received!"
+        localNotification.fireDate = NSDate()
+        localNotification.soundName = UILocalNotificationDefaultSoundName;
+        
+        UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
+    }
 
 }
 

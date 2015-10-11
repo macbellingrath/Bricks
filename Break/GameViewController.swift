@@ -130,7 +130,7 @@ class GameViewController: UIViewController, UIDynamicAnimatorDelegate, UICollisi
 
                 
                 topbar.score += 100
-                GameData.currentScore = topbar.score
+                GameData.mainData().currentScore = topbar.score
                 playSound(.Confirm)
     
                 }
@@ -149,13 +149,18 @@ class GameViewController: UIViewController, UIDynamicAnimatorDelegate, UICollisi
         case .Ceiling: print("I can fly high")
         case .Floor: print("I can fly low")
         
-        if topbar.lives > 0 {
+        if topbar.lives > 1 {
             //reduce lives and reset ball
             topbar.lives--
             
-        } else {
+    
+        } else if topbar.lives <= 1 {
             //game over
-        
+           
+            
+            
+            
+            
         }
             
             
@@ -169,9 +174,12 @@ class GameViewController: UIViewController, UIDynamicAnimatorDelegate, UICollisi
     
     func setBackGround() {
        
-        let bg = UIImageView(image: UIImage(named: "background"))
-        bg.frame = view.frame
-        view.addSubview(bg)
+        let bgColor = UIColor(red:1, green:0.4, blue:0.4, alpha:1)
+        view.backgroundColor = bgColor
+       
+//        let bg = UIImageView(image: UIImage(named: "background"))
+//        bg.frame = view.frame
+//        view.addSubview(bg)
     }
     
     //MARK: - Touches
