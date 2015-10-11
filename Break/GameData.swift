@@ -8,9 +8,17 @@
 
 import Foundation
 
+
+
+
+
+//Game singleton
 private let _mainData = GameData()
 
-class GameData: NSObject {
+
+
+
+class GameData: NSObject, StatsViewDataSource {
 
     class func mainData() -> GameData { return _mainData }
     
@@ -21,6 +29,14 @@ class GameData: NSObject {
         self.topScore = 0
         
         
+    }
+    
+    func getStats(game: GameData) -> [String : Int] {
+        let topScore = game.topScore
+        let currentScore = game.currentScore
+        let currentLevel = game.currentLevel
+        let statsDict = ["topScore": topScore, "currentScore": currentScore,"currentLevel":currentLevel]
+        return statsDict
     }
 
     
@@ -60,7 +76,8 @@ class GameData: NSObject {
     }
     
     
-       func getTopScore() -> Int {
+    
+    func getTopScore() -> Int {
       guard let topScore = NSUserDefaults.standardUserDefaults().objectForKey("TopScore") as? Int else {
         
             return 0

@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9052" systemVersion="15A279b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="cqH-9B-ZOm">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9040"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Start View Controller-->
@@ -19,9 +20,6 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Break" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eDR-Po-70s">
                                 <rect key="frame" x="0.0" y="137" width="667" height="100"/>
                                 <animations/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="J6f-KP-QHG"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -30,8 +28,7 @@
                                 <rect key="frame" x="283" y="256" width="100" height="60"/>
                                 <animations/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="C2w-I3-dQE"/>
-                                    <constraint firstAttribute="height" constant="60" id="Wc3-in-OWK"/>
+                                    <constraint firstAttribute="width" constant="100" id="v8b-Ii-Q4a"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="Play">
@@ -41,38 +38,62 @@
                                     <action selector="play:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rNl-Gi-ZQs"/>
                                 </connections>
                             </button>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="drP-sh-bjO">
-                                <rect key="frame" x="279.5" y="142" width="108" height="20.5"/>
+                            <view opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="VOO-Og-EHi">
+                                <rect key="frame" x="33" y="-205" width="600" height="580"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Top Score:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QIi-pu-6ll">
-                                        <rect key="frame" x="0.0" y="0.0" width="82.5" height="20.5"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ucE-3Q-z8K">
+                                        <rect key="frame" x="262" y="270" width="76" height="70"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Top Score" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yj9-fK-U0M">
+                                                <rect key="frame" x="0.0" y="0.0" width="76" height="20"/>
+                                                <animations/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="px6-pu-kiC">
+                                                <rect key="frame" x="0.0" y="20" width="76" height="50"/>
+                                                <animations/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
                                         <animations/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dUj-8M-TNC">
-                                        <rect key="frame" x="97" y="0.0" width="10.5" height="20.5"/>
-                                        <animations/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="px6-pu-kiC" secondAttribute="bottom" constant="29" id="4Gu-nv-Rh8"/>
+                                            <constraint firstItem="px6-pu-kiC" firstAttribute="top" secondItem="ucE-3Q-z8K" secondAttribute="top" constant="20" symbolic="YES" id="gMh-B4-iB2"/>
+                                        </constraints>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="4Gu-nv-Rh8"/>
+                                            </mask>
+                                        </variation>
+                                    </stackView>
                                 </subviews>
                                 <animations/>
-                            </stackView>
+                                <constraints>
+                                    <constraint firstItem="ucE-3Q-z8K" firstAttribute="centerX" secondItem="VOO-Og-EHi" secondAttribute="centerX" id="1DZ-Pu-Frr"/>
+                                    <constraint firstItem="ucE-3Q-z8K" firstAttribute="top" secondItem="VOO-Og-EHi" secondAttribute="top" constant="270" id="Gmg-ER-zX9"/>
+                                    <constraint firstAttribute="bottom" secondItem="ucE-3Q-z8K" secondAttribute="bottom" constant="240" id="rRd-Zt-lEw"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" red="1" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="drP-sh-bjO" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="0ui-fu-oea"/>
-                            <constraint firstItem="eDR-Po-70s" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="K5f-XL-8R5"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="1YM-hj-nql" secondAttribute="bottom" constant="59" id="Rov-DD-mZb"/>
-                            <constraint firstItem="drP-sh-bjO" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="122" id="XMz-hE-GDP"/>
-                            <constraint firstItem="1YM-hj-nql" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="agE-aK-LZf"/>
+                            <constraint firstItem="1YM-hj-nql" firstAttribute="top" secondItem="eDR-Po-70s" secondAttribute="bottom" constant="19" id="2wK-wW-Ibe"/>
+                            <constraint firstAttribute="trailing" secondItem="eDR-Po-70s" secondAttribute="trailing" id="Ca3-4l-gvc"/>
+                            <constraint firstItem="eDR-Po-70s" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="117" id="QJD-v9-UKx"/>
+                            <constraint firstItem="eDR-Po-70s" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="XR1-Ty-WqS"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="1YM-hj-nql" secondAttribute="bottom" constant="59" id="YpK-qi-gOE"/>
+                            <constraint firstItem="eDR-Po-70s" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="afm-YK-5gS"/>
                             <constraint firstItem="eDR-Po-70s" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="axY-So-u2y"/>
-                            <constraint firstItem="eDR-Po-70s" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="kLU-Ta-Mbf"/>
-                            <constraint firstAttribute="trailing" secondItem="eDR-Po-70s" secondAttribute="trailing" id="zbS-A7-c4j"/>
+                            <constraint firstItem="VOO-Og-EHi" firstAttribute="centerX" secondItem="eDR-Po-70s" secondAttribute="centerX" id="c4C-7p-GXr"/>
+                            <constraint firstItem="VOO-Og-EHi" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="13" id="hRM-HS-Ind"/>
+                            <constraint firstItem="VOO-Og-EHi" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="-205" id="lgd-EJ-hcB"/>
+                            <constraint firstItem="1YM-hj-nql" firstAttribute="centerX" secondItem="eDR-Po-70s" secondAttribute="centerX" id="ooT-aw-kq6"/>
+                            <constraint firstItem="VOO-Og-EHi" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="yXC-Ut-1YK"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -84,12 +105,12 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <outlet property="topScoreLabel" destination="dUj-8M-TNC" id="ct9-oe-OW1"/>
+                        <outlet property="topScoreLabel" destination="px6-pu-kiC" id="gf0-E2-Qgh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1587" y="-293"/>
+            <point key="canvasLocation" x="1586.5" y="-293.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="awI-xK-9U2">

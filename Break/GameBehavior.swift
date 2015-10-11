@@ -15,7 +15,7 @@ class GameBehavior: UIDynamicBehavior {
     
     //Collision Behavior
     lazy var collisionBehavior: UICollisionBehavior = {
-        print("collisionbehavior initialized")
+        print("Collision behavior initialized")
         let lazilyCreatedCollider = UICollisionBehavior()
         lazilyCreatedCollider.translatesReferenceBoundsIntoBoundary = true
         return lazilyCreatedCollider
@@ -110,6 +110,8 @@ class GameBehavior: UIDynamicBehavior {
                     refView.addSubview(brick)
                     collisionBehavior.addItem(brick)
                     brickBehavior.addItem(brick)
+                    
+                    
                 }
             }
 

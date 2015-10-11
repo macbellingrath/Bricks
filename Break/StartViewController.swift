@@ -30,24 +30,23 @@ import UIKit
 
 class StartViewController: UIViewController {
     
-    @IBOutlet weak var topScoreLabel: UILabel!
+    @IBOutlet weak var topScoreLabel: UILabel! {
+        didSet {
+            topScoreLabel.text = GameData.mainData().topScore.toString()
+            }
+    }
+    
+    
+    
     @IBAction func play(sender:UIButton) {
         
         let gameVC = GameViewController()
        
         navigationController?.viewControllers = [gameVC]
     }
-   
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        if let label = topScoreLabel {
-            let topScore = GameData.mainData().topScore
-            label.text = topScore.toString()
-        }
-    }
+   
 }
-
 
 protocol TextRepresentable {
     func toString() -> String

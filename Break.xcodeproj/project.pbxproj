@@ -24,7 +24,7 @@
 		E62D6C7A1BC6B4CB00CF2EC5 /* BreakWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = E62D6C5E1BC6B4CB00CF2EC5 /* BreakWatch.app */; };
 		E653A91D1BC821A4005A6708 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E62D6C631BC6B4CB00CF2EC5 /* Assets.xcassets */; };
 		E65722421BC98E94007C53DF /* GameData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65722411BC98E94007C53DF /* GameData.swift */; };
-		E65722441BC990F3007C53DF /* StatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65722431BC990F3007C53DF /* StatsViewController.swift */; };
+		E65722441BC990F3007C53DF /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65722431BC990F3007C53DF /* StatsView.swift */; };
 		E67221AB1BC7F7960079B990 /* GameBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67221AA1BC7F7960079B990 /* GameBehavior.swift */; };
 		E6EB5A331BC85597002CAC17 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E62D6C391BC6AD2D00CF2EC5 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
@@ -102,8 +102,9 @@
 		E62D6C751BC6B4CB00CF2EC5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E62D6C771BC6B4CB00CF2EC5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E65722411BC98E94007C53DF /* GameData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameData.swift; sourceTree = "<group>"; };
-		E65722431BC990F3007C53DF /* StatsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsViewController.swift; sourceTree = "<group>"; };
+		E65722431BC990F3007C53DF /* StatsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
 		E67221AA1BC7F7960079B990 /* GameBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameBehavior.swift; sourceTree = "<group>"; };
+		E6CCF5AE1BCAE7D400E8BDDA /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,8 +189,9 @@
 			children = (
 				E62D6C531BC6AEBD00CF2EC5 /* StartViewController.swift */,
 				E62D6C551BC6AED700CF2EC5 /* GameViewController.swift */,
-				E65722431BC990F3007C53DF /* StatsViewController.swift */,
+				E65722431BC990F3007C53DF /* StatsView.swift */,
 				E67221AA1BC7F7960079B990 /* GameBehavior.swift */,
+				E6CCF5AE1BCAE7D400E8BDDA /* MyPlayground.playground */,
 				E62D6C591BC6AF2800CF2EC5 /* GameTopBarView.swift */,
 				E65722411BC98E94007C53DF /* GameData.swift */,
 			);
@@ -384,7 +386,7 @@
 				E62D6C561BC6AED700CF2EC5 /* GameViewController.swift in Sources */,
 				E62D6C5A1BC6AF2800CF2EC5 /* GameTopBarView.swift in Sources */,
 				E67221AB1BC7F7960079B990 /* GameBehavior.swift in Sources */,
-				E65722441BC990F3007C53DF /* StatsViewController.swift in Sources */,
+				E65722441BC990F3007C53DF /* StatsView.swift in Sources */,
 				E65722421BC98E94007C53DF /* GameData.swift in Sources */,
 				E62D6C541BC6AEBD00CF2EC5 /* StartViewController.swift in Sources */,
 			);

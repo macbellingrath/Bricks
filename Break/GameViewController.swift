@@ -46,6 +46,9 @@ class GameViewController: UIViewController, UIDynamicAnimatorDelegate, UICollisi
     var players = [AVAudioPlayer]()
     
     
+    
+    //MARK: - WCSession Delegate
+    
     func session(session: WCSession, didReceiveMessage message: [String : AnyObject], replyHandler: ([String : AnyObject]) -> Void) {
         if let value = message["sliderValue"] as? String {
             print(value)
@@ -103,7 +106,10 @@ class GameViewController: UIViewController, UIDynamicAnimatorDelegate, UICollisi
         
         
         //MARK: - Brick Drawing
-       gameBehavior.addBricks(8, rows: 3, brickHeight: 30, brickSpacing: 5)
+        let levels = GameData.mainData().levels
+        let currentLevel = levels[GameData.mainData().currentLevel]
+        
+       gameBehavior.addBricks(currentLevel.0, rows: currentLevel.1, brickHeight: 30, brickSpacing: 5)
        
     }
     
@@ -117,7 +123,9 @@ class GameViewController: UIViewController, UIDynamicAnimatorDelegate, UICollisi
     
     func collisionBehavior(behavior: UICollisionBehavior, beganContactForItem item1: UIDynamicItem, withItem item2: UIDynamicItem, atPoint p: CGPoint) {
        
+       
         
+
         for brick in gameBehavior.brickBehavior.items as! [UIView] {
            
           
@@ -135,7 +143,7 @@ class GameViewController: UIViewController, UIDynamicAnimatorDelegate, UICollisi
     
                 }
 
-            }
+        }
         
     }
 
@@ -149,15 +157,24 @@ class GameViewController: UIViewController, UIDynamicAnimatorDelegate, UICollisi
         case .Ceiling: print("I can fly high")
         case .Floor: print("I can fly low")
         
-        if topbar.lives > 1 {
+        if topbar.lives >= 1 {
             //reduce lives and reset ball
             topbar.lives--
+            //delete ball
+            //remove ball from collison and  behavior collision
             
-    
-        } else if topbar.lives <= 1 {
-            //game over
+            
+            //reference semantics??
+            
            
             
+            
+    
+        } else if topbar.lives == 0 {
+            //game over
+            endGame()
+           
+        
             
             
             
@@ -171,7 +188,12 @@ class GameViewController: UIViewController, UIDynamicAnimatorDelegate, UICollisi
             }
         }
     }
-    
+    func endGame() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let startVC = storyboard.instantiateViewControllerWithIdentifier("startVC")
+        navigationController?.viewControllers = [startVC]
+        
+    }
     func setBackGround() {
        
         let bgColor = UIColor(red:1, green:0.4, blue:0.4, alpha:1)
