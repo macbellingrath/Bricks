@@ -9,6 +9,7 @@
 import UIKit
 import AVFoundation
 import WatchConnectivity
+import CoreMotion
 
 
 class GameViewController: UIViewController, UIDynamicAnimatorDelegate, UICollisionBehaviorDelegate, AVAudioPlayerDelegate, WCSessionDelegate {
@@ -20,6 +21,13 @@ class GameViewController: UIViewController, UIDynamicAnimatorDelegate, UICollisi
         return lazilyCreatedDynamicAnimator
 
     }()
+    
+    //MARK: - Motion
+    
+    lazy var manager = CMMotionManager()
+    lazy var queue = NSOperationQueue()
+    
+    
     
     var data = [String]()
     
@@ -96,6 +104,8 @@ class GameViewController: UIViewController, UIDynamicAnimatorDelegate, UICollisi
         
         
         
+        
+        
         //MARK: - Paddle
         gameBehavior.addPaddle(paddle)
        
@@ -104,6 +114,25 @@ class GameViewController: UIViewController, UIDynamicAnimatorDelegate, UICollisi
         
         animator.addBehavior(attachmentBehavior!)
         
+        
+        //
+        if manager.gyroAvailable {
+            if manager.gyroActive == false {
+                manager.gyroUpdateInterval = 1.0 / 40.0
+                
+                manager.startGyroUpdatesToQueue(queue, withHandler: { (data, error) -> Void in
+                    
+                    
+                    if let x = data?.rotationRate.x {
+                        let floatX = CGFloat(x)
+                        print(floatX)
+                        self.attachmentBehavior?.anchorPoint.x = floatX
+                        
+
+                    }
+                })
+            }
+        }
         
         //MARK: - Brick Drawing
         let levels = GameData.mainData().levels
@@ -140,9 +169,9 @@ class GameViewController: UIViewController, UIDynamicAnimatorDelegate, UICollisi
                 topbar.score += 100
                 GameData.mainData().currentScore = topbar.score
                 playSound(.Confirm)
+                
     
                 }
-
         }
         
     }

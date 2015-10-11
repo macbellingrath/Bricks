@@ -39,7 +39,8 @@ class StartViewController: UIViewController {
     
     
     @IBAction func play(sender:UIButton) {
-        
+        print("pressed")
+       
         let gameVC = GameViewController()
        
         navigationController?.viewControllers = [gameVC]
