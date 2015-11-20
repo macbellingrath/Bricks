@@ -12,6 +12,8 @@ import WatchConnectivity
 import CoreMotion
 
 
+
+
 class GameViewController: UIViewController, UIDynamicAnimatorDelegate, UICollisionBehaviorDelegate, AVAudioPlayerDelegate, WCSessionDelegate {
     
     //MARK: - Animator 
@@ -70,6 +72,13 @@ class GameViewController: UIViewController, UIDynamicAnimatorDelegate, UICollisi
     override func viewDidLoad() {
         super.viewDidLoad()
      
+        
+               
+        
+        
+        
+        
+        
         animator.addBehavior(gameBehavior)
         
         if (WCSession.isSupported()) {
@@ -307,6 +316,7 @@ extension AVAudioPlayer {
         convenience init(assetIdentifier: AssetIdentifier) throws {
             
             guard let file = NSDataAsset(name: assetIdentifier.rawValue) else { throw AssetError.AssetNotFound }
+            
             try self.init(data: file.data)
             
         }

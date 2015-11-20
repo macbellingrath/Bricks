@@ -27,6 +27,7 @@
 
 
 import UIKit
+//import Crashlytics
 
 class StartViewController: UIViewController {
     
@@ -45,6 +46,22 @@ class StartViewController: UIViewController {
        
         navigationController?.viewControllers = [gameVC]
     }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        //FORCE A CRASH
+        let button = UIButton(type: UIButtonType.RoundedRect)
+        button.frame = CGRectMake(20, 50, 100, 30)
+        button.setTitle("Crash", forState: UIControlState.Normal)
+        button.addTarget(self, action: "crashButtonTapped:", forControlEvents: UIControlEvents.TouchUpInside)
+        view.addSubview(button)
+        
+//        func crashButtonTapped(sender: AnyObject) {
+//            Crashlytics.sharedInstance().crash()
+//            }
+
+    }
+
     
    
 }
